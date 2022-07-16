@@ -6,7 +6,13 @@ fun File.calculateBalance(account: String, currency: String): Double {
     val filterRegex = Regex(".{14}\\|. $currency [0-9. ]+[^ ]* $account .*")
     return readLines()
         .filter { it.matches(filterRegex) }
-        .map { it.substring(21, 33).toDouble() * if (it.indexOf(account) > 33) 1 else -1 }
+        .map { it.substring(21, 33).toDouble() * if (it.indexOf(" $account ") > 33) 1 else -1 }
         .sum()
 }
  
+fun File.collectAccounts(): Set<String> {
+    return readLines()
+        .drop(1)
+        .map { it.substring(33, 50).takeWhile { it != ' ' } }
+        .toSortedSet()
+}
