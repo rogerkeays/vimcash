@@ -1,2 +1,2 @@
 # vimcash
-Simple powerful text based double entry accounting system.
+Simple and powerful text based double entry accounting system.
