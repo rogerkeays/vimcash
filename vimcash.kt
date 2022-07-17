@@ -2,7 +2,7 @@
 
 import java.io.File
 
-fun String.getAmount(account: String): Double {
+fun String.parseAmount(account: String): Double {
     return substring(21, 33).toDouble() * if (indexOf(" $account ") > 33) 1 else -1
 }
 
@@ -10,7 +10,7 @@ fun File.calculateBalance(account: String, currency: String): Double {
     val filterRegex = Regex(".{14}\\|. $currency [0-9. ]+[^ ]* $account .*")
     return readLines()
         .filter { it.matches(filterRegex) }
-        .map { it.getAmount(account) }
+        .map { it.parseAmount(account) }
         .sum()
 }
  
@@ -21,7 +21,8 @@ fun File.calculateBalances(account: String): Map<String, Double> {
         .filter { it.matches(filterRegex) }
         .forEach { 
             val currency = it.slice(17..19)
-            results.put(currency, results.get(currency)?.plus(it.getAmount(account)) ?: it.getAmount(account)) 
+            val amount = it.parseAmount(account)
+            results.put(currency, results.get(currency)?.plus(amount) ?: amount) 
         }
     return results
 }
