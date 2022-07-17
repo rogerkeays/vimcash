@@ -30,6 +30,6 @@ fun File.calculateBalances(account: String): Map<String, Double> {
 fun File.collectAccounts(): Set<String> {
     return readLines()
         .drop(1)
-        .map { it.substring(33, 50).takeWhile { it != ' ' } }
+        .flatMap { it.substring(33, 50).split(' ') }
         .toSortedSet()
 }
