@@ -3,7 +3,7 @@
 import java.io.File
 
 fun String.parseAmount(account: String): Double {
-    return substring(21, 33).toDouble() * if (indexOf(" $account ") > 33) 1 else -1
+    return substring(21, 33).toDouble() * if (indexOf(" $account ") > 33) -1 else 1
 }
 
 fun File.calculateBalance(account: String, currency: String): Double {
