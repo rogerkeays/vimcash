@@ -30,6 +30,16 @@ fun File.calculateBalances(account: String): Map<String, Double> {
 fun File.collectAccounts(): Set<String> {
     return readLines()
         .drop(1)
-        .flatMap { it.substring(33, 50).split(' ') }
+        .flatMap { it.substring(33, 51).split(' ') }
         .toSortedSet()
 }
+
+fun File.reportBalances() {
+     collectAccounts().forEach { 
+         print(" $it: ")
+         println(calculateBalances(it).filter { it.value.abs() > 0.005 })
+     }
+}
+
+fun Double.abs(): Double = kotlin.math.abs(this)
+
