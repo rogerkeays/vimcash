@@ -35,11 +35,13 @@ fun File.collectAccounts(): Set<String> {
 }
 
 fun File.reportBalances() {
-     collectAccounts().forEach { 
-         print(" $it: ")
-         println(calculateBalances(it).filter { it.value.abs() > 0.005 })
-     }
+     collectAccounts()
+         .filter { it.matches(allCapsRegex) }
+         .associate { Pair(it, calculateBalances(it).filter { it.value.abs() > 0.005 }) }
+         .filter { it.value.size > 0 }
+         .forEach { println(it) }
 }
+val allCapsRegex = Regex("[0-9A-Z]+")
 
 fun Double.abs(): Double = kotlin.math.abs(this)
 
