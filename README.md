@@ -1,6 +1,6 @@
 # Vimcash: A simple text based double entry accounting system.
 
-*Vimcash* is a text-based accounting system using the *[vimjournal](https://github.com/rogerkeays/vimjournal)* file format. It uses a double-entry model, but provides a convenient shorthand for single-entry records:
+*Vimcash* is a text-based accounting system using the [vimjournal](https://github.com/rogerkeays/vimjournal) file format. It uses a double-entry model, but provides a convenient shorthand for single-entry records:
 
     20200906_1830 |- USD 2           clothes CASH       sunnies @market
     20200907_2000 |- USD 4.5         hardware CASH      aima earphones x3 @mr-diy:sorya-centre
