@@ -1,6 +1,6 @@
-# Vimcash: A simple and powerful text based double entry accounting system.
+# Vimcash: A simple text based double entry accounting system.
 
-*Vimcash* is a text-based accounting system using the *vimjournal* file format. It uses a double-entry model, but provides a convenient shorthand for single-entry records.For example:
+*Vimcash* is a text-based accounting system using the *[vimjournal](https://github.com/rogerkeays/vimjournal)* file format. It uses a double-entry model, but provides a convenient shorthand for single-entry records:
 
     20200906_1830 |- USD 2           clothes CASH       sunnies @market
     20200907_2000 |- USD 4.5         hardware CASH      aima earphones x3 @mr-diy:sorya-centre
@@ -12,13 +12,13 @@
 
 By convention, asset and liability accounts use capital letters (for the balance sheet report) and income and expense accounts are in lowercase (for the profit and loss statement).
  
-Although the above records look like single entry, they all have two accounts, so are really double-entry. We just put them on one line. Sometimes a transaction involves more than two accounts (or more than one currency). In that case, you can list the splits one per line and reference the *split account* `:`.
+Although the above records look like single entry, they all have two accounts, so are really double-entry. We just put them on one line. Sometimes a transaction involves more than two accounts (or more than one currency). In that case, you can list the splits one per line and reference the special *split account* **`:`**.
 
     20200912_1500 |= USD 390         CASH :             atm withdrawal @aba-atm
     20200912_1500 |- USD 5           fees :             atm withdrawal fee @aba-atm
     20200912_1500 |= AUD 544.62      : CITI             atm withdrawal @aba-atm
 
-Splits with the same timestamp referencing the `:` account are considered to part of the same transaction. Especially complicated transactions may require two split accounts, but these are rare. You can use `:1` and `:2`.
+Records with the same timestamp using the `:` account are considered to part of the same transaction. Especially complicated transactions may require two split accounts, but these are rare. You can use `:1` and `:2`.
 
 ## File Format
 
