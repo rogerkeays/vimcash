@@ -20,6 +20,8 @@ Although the above records look like single entry, they all have two accounts, s
 
 Records with the same timestamp using the `:` account are considered to part of the same transaction. Especially complicated transactions may require two split accounts, but these are rare. You can use `:1` and `:2`.
 
+*Vimcash* allows you to use any currencies, but does not try to convert them for reports. Thus, your reports may include different currencies.
+
 ## File Format
 
 The basic format is:
