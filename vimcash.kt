@@ -3,11 +3,11 @@
 import java.io.File
 
 fun String.parseAmount(account: String): Double {
-    return substring(21, 33).toDouble() * if (indexOf(" $account ") > 33) -1 else 1
+    return substring(22, 34).toDouble() * if (indexOf(" $account ") > 34) -1 else 1
 }
 
 fun File.calculateBalance(account: String, currency: String): Double {
-    val filterRegex = Regex(".{14}\\|. $currency [0-9. ]+[^ ]* $account .*")
+    val filterRegex = Regex(".{15}\\|  $currency [0-9. ]+[^ ]* $account .*")
     return readLines()
         .filter { it.matches(filterRegex) }
         .map { it.parseAmount(account) }
@@ -15,12 +15,12 @@ fun File.calculateBalance(account: String, currency: String): Double {
 }
  
 fun File.calculateBalances(account: String): Map<String, Double> {
-    val filterRegex = Regex(".{14}\\|. ... [0-9. ]+[^ ]* $account .*")
+    val filterRegex = Regex(".{15}\\|  ... [0-9. ]+[^ ]* $account .*")
     val results = mutableMapOf<String, Double>()
     readLines()
         .filter { it.matches(filterRegex) }
         .forEach { 
-            val currency = it.slice(17..19)
+            val currency = it.slice(18..20)
             val amount = it.parseAmount(account)
             results.put(currency, results.get(currency)?.plus(amount) ?: amount) 
         }
@@ -29,8 +29,7 @@ fun File.calculateBalances(account: String): Map<String, Double> {
 
 fun File.collectAccounts(): Set<String> {
     return readLines()
-        .drop(1)
-        .flatMap { it.substring(33, 51).split(' ') }
+        .flatMap { it.substring(34, 52).split(' ') }
         .toSortedSet()
 }
 
