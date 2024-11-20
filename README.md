@@ -38,7 +38,7 @@ The type may be one of the following:
 
 The investment and divestment types are used to calculate returns of investment, but otherwise the types do not affect reports. The balance sheet and profit and loss reports are based on debit and credit accounts, so you still have to get them in the right order.
 
-For a description of the tags, please see [vimjournal](https://github.com/rogerkeays/vimjournal). They do not have any signifance in *vimcash*.
+For a description of the tags, please see [vimjournal](https://github.com/rogerkeays/vimjournal). They do not have any significance in *vimcash*.
 
 ## Command Line Tools
 
