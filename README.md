@@ -2,23 +2,23 @@
 
 *Vimcash* is a text-based accounting system using the [vimjournal](https://github.com/rogerkeays/vimjournal) file format. It uses a double-entry model, but provides a convenient shorthand for single-entry records:
 
-    20200906_1830 |- USD 2           clothes CASH       sunnies @market
-    20200907_2000 |- USD 4.5         hardware CASH      aima earphones x3 @mr-diy:sorya-centre
-    20200907_2000 |- USD 2           sport CASH         silicon swimming caps x2 @mr-diy:sorya-centre
-    20200908_1445 |- USD 30          tax CASH           visa extension @immigration-office
-    20200909_1700 |- USD 6.25        travel CASH        bus to the city @sla-hostel
-    20200911_1010 |- USD 1.25        hardware CASH      laptop charge repair @route-33
-    20200911_1355 |- USD 14          accomm CASH        khmer house bungalow @khmer-house
+    20200906_1830 |- sunnies: USD 2 clothes CASH
+    20200907_2000 |- aima earphones x3: USD 4.5 hardware CASH
+    20200907_2000 |- silicon swimming caps x2: USD 2 sport CASH
+    20200908_1445 |- visa extension: USD 30 tax CASH
+    20200909_1700 |- bus to the city: USD 6.25 travel CASH
+    20200911_1010 |- laptop charge repair: USD 1.25 hardware CASH
+    20200911_1355 |- khmer house bungalow: USD 14 accomm CASH
 
 By convention, asset and liability accounts use capital letters (for the balance sheet report) and income and expense accounts are in lowercase (for the profit and loss statement).
  
-Although the above records look like single entry, they all have two accounts, so are really double-entry. We just put them on one line. Sometimes a transaction involves more than two accounts (or more than one currency). In that case, you can list the splits one per line and reference the special *split account* **`:`**.
+Although the above records look like single entry, they all have two accounts, so are really double-entry. We just put them on one line. Sometimes a transaction involves more than two accounts (or more than one currency). In that case, you can list the splits one per line and reference the special *split account* **`-`**.
 
-    20200912_1500 |= USD 390         CASH :             atm withdrawal @aba-atm
-    20200912_1500 |- USD 5           fees :             atm withdrawal fee @aba-atm
-    20200912_1500 |= AUD 544.62      : CITI             atm withdrawal @aba-atm
+    20200912_1500 |= atm withdrawal: USD 390 CASH -
+    20200912_1500 |- atm withdrawal: USD 5 fees -
+    20200912_1500 |= atm withdrawal: AUD 544.62 - CITI
 
-Records with the same timestamp using the `:` account are considered to part of the same transaction. Especially complicated transactions may require two split accounts, but these are rare. You can use `:1` and `:2`.
+Records with the same timestamp using the `-` account are considered to part of the same transaction. Especially complicated transactions may require two split accounts, but these are rare. You can use `-1` and `-2`.
 
 *Vimcash* allows you to use any currencies, but does not try to convert them for reports. Thus, your reports may include different currencies.
 
@@ -26,7 +26,7 @@ Records with the same timestamp using the `:` account are considered to part of 
 
 The basic format is:
 
-    YYYYMMDD_HHMM |[type] [currency] [amount] [debit account] [credit account] [description] [tags]
+    YYYYMMDD_HHMM [type]| [description]: [currency] [amount] [debit account] [credit account] [tags]
 
 The type may be one of the following:
 
