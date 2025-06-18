@@ -61,7 +61,7 @@ fun File.collectAccounts(): Set<String> {
 fun File.reportBalances() {
      collectAccounts()
          .filter { it.matches(allCapsRegex) }
-         .associate { Pair(it, calculateBalances(it).filter { it.value.abs() > 0.005 }) }
+         .associate { Pair(it, calculateBalances(it).filter { it.value.abs() > 0.001 }) }
          .filter { it.value.size > 0 }
          .forEach { println(it) }
 }
